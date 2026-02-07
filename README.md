@@ -1,41 +1,25 @@
-# Semantic Novelty Engine: Information-Geometric Text Analysis
+# FPGA Novelty Detection Accelerator
 
-## Core
-
-Traditional novelty detection relies on simple statistical outliers. This engine operates in the **Geometric Domain**:
-1.  **Surprise (KL Divergence):** Measures how "unlikely" a sequence is compared to a base uniform distribution.
-2.  **Sensitivity (Fisher Information):** Measures the "strain" or "work" required by the model's parameters to process the input.
-3.  **The Novelty Functional ($\Phi$):** A unified metric that triggers alerts when an input provides high-value, novel information that the model hasn't "mastered."
+**Target FPGA:** Gowin Tang Nano 9K
+**Logic:** Leaky Integrator Neuron + UART E2E Benchmark Echo
 
 ---
 
-## 🛠 Technical Architecture
+## Project Overview
+This project implements a **novelty detection accelerator** on the Gowin Tang Nano 9K FPGA, designed with a focus on **extremely low resource usage**—a core principle in my research on federated learning (FL) and decentralized systems. The goal is to **dismantle the "compute wall" paradigm** by demonstrating how lightweight, deterministic hardware can achieve real-time performance with minimal resources.
 
-### 1. The Novelty Functional ($\Phi$)
-The engine calculates a novelty score by balancing distributional divergence against parameter sensitivity:
+The accelerator receives streaming input via UART, accumulates signal energy using a **leaky integrator**, compares it to pre-set thresholds in a **weight ROM**, and visualizes novelty events on **onboard LEDs**. It also echoes input back to a host for **end-to-end (E2E) latency benchmarking**, enabling direct comparison with CPU-based implementations.
 
-$$\Phi = \frac{D_{KL} \cdot Trace(\mathcal{I})}{\frac{N_{tokens}}{Normalizer} + \epsilon}$$
-
-### 2. Information Metrics
-* **KL Divergence ($D_{KL}$):** Calculated between the model's output `log_softmax` and a log-uniform distribution. This captures the specificity of the prediction.
-    
-* **Fisher Information Trace ($\mathcal{I}$):** Derived from the squared norm of gradients in the `lm_head` (Semantic Bottleneck) during a backward pass. This represents the "Learning Pressure" exerted by the text.
-* **Attention Normalization:** Adjusts the score based on sequence length to prevent long, repetitive strings from inflating novelty.
-
-### 3. Semantic Bottleneck Targeting
-Instead of analyzing all model weights ($O(n)$), the engine targets the `lm_head`. This focus allows for real-time analysis while capturing the most critical semantic gradients where internal representations project into vocabulary space.
+This design serves as a **hardware-software co-design benchmark**, aligning with my broader research goals of advancing **large-scale device networks** (1M–100M devices) and exploring novel gated mechanisms in FL.
 
 ---
 
-## 📊 Live Simulation & Visualization
+## Key Features
+- **Leaky Integrator Neuron**: Smooths input and accumulates energy with minimal computational overhead.
+- **Weight ROM Thresholding**: Triggers LED feedback when energy exceeds a threshold, ensuring deterministic behavior.
+- **UART RX/TX Echo**: Enables real-time benchmarking of FPGA vs CPU, validating hardware efficiency.
+- **LED Visualization**: Provides immediate feedback on novelty events, useful for debugging and demonstration.
+- **Deterministic Behavior**: Achieves low jitter (<0.5 µs) for reproducible results, critical for large-scale deployments.
 
-The engine includes an interactive suite that tracks three distinct data streams in real-time:
-
-| Metric | Visualization | Purpose |
-| :--- | :--- | :--- |
-| **Novelty ($\Phi$)** | **Teal Line** | Final decision metric. Alerts trigger when $\Phi > \tau$ (Threshold). |
-| **KL Divergence** | **Orange Line** | Tracks "predictive surprise" relative to vocabulary distribution. |
-| **Fisher Trace** | **Purple Line** | Tracks "parameter stress" or new knowledge acquisition. |
-
-
+---
 
