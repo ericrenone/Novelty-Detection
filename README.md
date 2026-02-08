@@ -81,6 +81,6 @@ The project utilizes a **5x5x5 Burst Mode** (5 Seeds × 5 Parallel Instances × 
 ### Hardware Setup
 1. Flash `Verilog_Power_Metrics.v` to your **Gowin Tang Nano 9K**.
 2. Connect via USB (ensure your port is set to `COM6` or update the Python script).
-3. Run Python test
+3. Run Python: Power Metrics Test.py
 
 
