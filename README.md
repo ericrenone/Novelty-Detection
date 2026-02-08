@@ -39,6 +39,7 @@ The project utilizes a **5x5x5 Burst Mode** (5 Seeds × 5 Parallel Instances × 
 | Deterministic Jitter  | High (OS-dependent)  | < 0.5 µs           |
 | Numeric Format        | 64-bit Float/Int     | Q16.0 Fixed-Point   |
 
+<img width="1360" height="1556" alt="test" src="https://github.com/user-attachments/assets/de1329b6-9ae8-4474-a14f-518cc7fcfc9f" />
 ---
 
 ## 4. Uniqueness
@@ -85,6 +86,7 @@ To be scientifically rigorous, there are a few things this current version doesn
 
 ---
 
+
 ## 9. Quick Start
 
 ### Hardware Setup
@@ -95,6 +97,3 @@ To be scientifically rigorous, there are a few things this current version doesn
 ```bash
 pip install pyserial psutil matplotlib numpy
 python Power_Metrics_Test.py
-
-<img width="1360" height="1556" alt="test" src="https://github.com/user-attachments/assets/d7fb13d1-b890-4982-9181-6b5bc74fb812" />
-
