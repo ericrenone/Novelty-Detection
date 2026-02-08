@@ -8,7 +8,6 @@
 ✅ No learned weights or network graph
 ✅ Deterministic timing guarantees (a new metric)
 ✅ Hardware‑software hybrid for edge systems
-✅ Runs on ultra‑low‑cost FPGA ($10 class)
 
 ---
 
