@@ -1,5 +1,5 @@
 # FPGA Novelty Detection Accelerator
-**Hardware-Software-Hyrbrid-Accelerated Leaky Integrator Neuron for Deterministic Anomaly Detection**
+**Hardware-Software-Hybrid Accelerated Leaky Integrator Neuron for Deterministic Anomaly Detection**
 
 ---
 
